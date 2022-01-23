@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ssh pi@dbapollo.proton.lan "rm -fr /web-serve/butcher.fam/*"
+echo "Directory cleaned"
+scp -r ../homeapp/build/* pi@dbapollo.proton.lan:/web-serve/butcher.fam
+echo "App Deployed"
+
