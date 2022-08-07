@@ -1,0 +1,4 @@
+---
+sensor-name: test1
+serverIP: localhost
+serverPort: 8000
