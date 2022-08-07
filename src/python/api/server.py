@@ -3,9 +3,21 @@ from spyne.protocol.http import HttpRpc
 from spyne.protocol.json import JsonDocument
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
+from wsgiref.simple_server import make_server
 
 
-class HelloWorldService(ServiceBase):
+class LoggingService(ServiceBase):
+
+    def __init__(self):
+        self.app = Application([LoggingService], 'spyne.examples.hello.http',
+                          in_protocol=Soap11(validator='lxml'),
+                          out_protocol=Soap11(),
+                          )
+
+    def runServer(self):
+        wsgi_app = WsgiApplication(self.app)
+        server = make_server('0.0.0.0', 8000, wsgi_app)
+        server.serve_forever()
 
 
     @srpc(String, UnsignedInteger, _returns=Iterable(String))
@@ -13,19 +25,10 @@ class HelloWorldService(ServiceBase):
         for i in range(times):
             yield 'Hello, %s' % name
 
+    @srpc(String, _returns=Integer)
+    def logEvent(name):
+        for i in range(times):
+            yield 'Hello, %s' % name
 
 
 
-app = Application([HelloWorldService], 'spyne.examples.hello.http',
-                  in_protocol=Soap11(validator='lxml'),
-                  out_protocol=Soap11(),
-                  )
-if __name__ == '__main__':
-    # You can use any Wsgi server. Here, we chose
-    # Python's built-in wsgi server but you're not
-    # supposed to use it in production.
-    from wsgiref.simple_server import make_server
-
-    wsgi_app = WsgiApplication(app)
-    server = make_server('0.0.0.0', 8000, wsgi_app)
-    server.serve_forever()

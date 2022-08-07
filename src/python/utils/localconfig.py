@@ -1,12 +1,10 @@
 # load info from local config file
 from yaml import load, dump, Loader, Dumper
 
-CONFIG_FILE_NAME = ".config.yaml"
-
 class Config:
-    def __init__(self, logger):
+    def __init__(self, logger, configFileName):
         try:
-            self.configFile = open(CONFIG_FILE_NAME, "r")
+            self.configFile = open(configFileName, "r")
         except:
             logger.log("Error opening config file")
 
