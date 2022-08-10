@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {testAPI} from "../api/sensorAPI";
+import {getLogs} from "../api/sensorAPI";
 import ShowLog from "./ShowLog";
 
 export default function LogList(){
@@ -9,7 +9,7 @@ export default function LogList(){
     const ctx = {logs, selFile}
 
     useEffect(() => {
-        testAPI(setLogs);
+        getLogs(setLogs);
     }, [])
 
     const liLogs = () => {

@@ -1,9 +1,9 @@
 export default function ShowLog(props){
 
-    if (props.selFile){
-
+    if (!props.selFile){
+        return null
+    } else {
+        return(null)
     }
-    return (
-        null
-    )
+
 }
