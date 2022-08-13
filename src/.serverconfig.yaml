@@ -1,0 +1,4 @@
+---
+sensor-name: sensorServer
+serverIP: localhost
+serverPort: 8000
