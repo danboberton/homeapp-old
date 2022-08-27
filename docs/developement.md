@@ -1,5 +1,12 @@
-### Platform spec
+# Platform spec
 node.js - 12.22.5
+## Python
+python 3.10.6
+
+### pip
+`pip install pyyaml spyne zeep pymongo`
+
+
 
 
 ### Building express
