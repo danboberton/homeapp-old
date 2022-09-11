@@ -1,9 +1,12 @@
 # Platform spec
+Recommended OS: ubuntu 22 Jammy Jellyfish
+
+## Versions
 node.js - 12.22.5
-## Python
+### Python
 python 3.10.6
 
-### pip
+#### pip
 `pip install pyyaml spyne zeep pymongo`
 
 
